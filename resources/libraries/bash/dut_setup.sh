@@ -23,8 +23,8 @@ function cmd {
 echo
 echo "[Command_desc] Starting ${0}"
 
-if [ -f "/etc/redhat-release" ]; then
-    cmd 'rpm -qai vpp*'
+if [ ! -z $(rpm -qf /sbin/init 2>/dev/null) ] ; then
+    cmd 'rpm -qai vpp\*'
 else
     cmd 'dpkg -l vpp\*'
 fi
